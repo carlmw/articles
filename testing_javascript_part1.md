@@ -1,10 +1,11 @@
-# Making JavaScript testing in the browser not suck with sinon.js (Part 1)
+# Making JavaScript testing in the browser not suck with Sinon.js (Part 1)
 
-Writing tests for JavaScript is tough and often overlooked. I'm going to do my best to persuade you why you need them and more importantly how to make it easier to write them with an awesome library called [sinon.js](http://sinonjs.org/).
+Writing tests for JavaScript is tough and often overlooked. I'm going to do my best to persuade you why you need them and more importantly how to make it easier to write them with an awesome library called [Sinon.js](http://sinonjs.org/).
 
 ## Getting started
-The are several mature testing frameworks out there and while I have my preferences it's up to you to make up your mind which meets your needs.
+The are several mature testing frameworks out there. I have my preference, but it's up to you to decide which framework meets your needs.
 
+For your consideration:
 * [QUnit](http://qunitjs.com/)
 * [Mocha](http://visionmedia.github.com/mocha/)
 * [Jasmine](http://pivotal.github.com/jasmine/)
@@ -12,7 +13,7 @@ The are several mature testing frameworks out there and while I have my preferen
 ### Setting up
 First we'll need to create a page to run our tests. We'll include the libraries we plan to use to write our tests.
 
-In my examples I'm going to use QUnit simply because it's the framework I'm most familiar with and the tests are the easiest to read. Check out [using QUnit](http://docs.jquery.com/QUnit#Using_QUnit) for detailed setup instructions. You'll also need sinon, so head over to [sinonjs.com](http://sinonjs.org) and download it along with the QUnit adapter.
+In my examples I'm going to use QUnit simply because it's the framework I'm most familiar with and the tests are the easiest to read. Check out [using QUnit](http://docs.jquery.com/QUnit#Using_QUnit) for detailed setup instructions. You'll also need Sinon, so head over to [sinonjs.com](http://sinonjs.org) and download it along with the QUnit adapter.
 
 Here's my test runner, I've chucked in jQuery too because it's a defacto standard and makes it much easier to test the DOM.
 
@@ -80,14 +81,14 @@ Now lets write some code to get this test to pass:
 
 There we go, our first test passes. Now onto more complicated matters.
 
-### Getting asyncronous
+### Getting asynchronous
 Now lets alter our listView module to load some data from the server. This presents us with two problems:
 
 1. We don't want to request data from a real server. This would be slow and means we can't test our code in isolation.
 2. The request could return at any time and our test doesn't know when to expect it.
 
 ### Sinon.js to the rescue
-Sinon is a collection of utterly essential testing tools that among other things enable you to deal with tricky asyncronous code and server requests.
+Sinon is a collection of utterly essential testing tools that among other things enable you to deal with tricky asynchronous code and server requests.
 
 Lets write a new test:
   
@@ -125,7 +126,7 @@ Lets write a new test:
       equal(domList.innerHTML, 'XHR INNIT', 'The retrieved values should be rendered');
     });
 
-We've now defined a setup function for our test suite which setups a fake XMLHttpRequest object that will intercept any attempt to communicate over XHR and allow us to define our own responses. Even better it will make our request syncronous since we're responding to our fake request immediately from inside our test; pretty cool. 
+We've now defined a setup function for our test suite which setups a fake XMLHttpRequest object that will intercept any attempt to communicate over XHR and allow us to define our own responses. Even better it will make our request synchronous since we're responding to our fake request immediately from inside our test; pretty cool. 
 
 Lets update listView and get that test to pass:
 
@@ -153,7 +154,7 @@ Run the tests
 Perfect.
 
 ### Burning through time
-When testing JavaScript animation or other asyncronous functionality based on timeouts and intervals you don't want to have to wait for them to finish in your tests.
+When testing JavaScript animation or other asynchronous functionality based on timeouts and intervals you don't want to have to wait for them to finish in your tests.
 
 Sinon.js solves this for you with fake timers. Sinon will replace the browsers timing functions with it's own. This enables you to advance the clock manually and test what your code does in response.
 
@@ -187,7 +188,7 @@ Lets write a test to animate a simple cube:
       clock.restore();
     });
 
-In this test we're telling sinon to replace the browsers timers and then incrementally advancing the timer to interesting points in our animation and asserting that the cube is where we expect it to be.
+In this test we're telling Sinon to replace the browsers timers and then incrementally advancing the timer to interesting points in our animation and asserting that the cube is where we expect it to be.
 
 And now lets make the test pass:
 
@@ -215,5 +216,5 @@ And now lets make the test pass:
 
 Hopefully this has served as a useful introduction to effective JavaScript testing in the browser.
 
-In the second part of this article i'll write about sinon spies, mocks and stubs.
+In the second part of this article I'll write about Sinon spies, mocks and stubs.
 
