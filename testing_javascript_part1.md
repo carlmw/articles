@@ -165,7 +165,7 @@ Run the tests
 
 Perfect.
 
-## Burning through time
+### Burning through time
 When testing JavaScript animation or other asyncronous functionality based on timeouts and intervals you don't want to have to wait for them to finish in your tests.
 
 Sinon.js solves this for you with fake timers. Sinon will replace the browsers timing functions with it's own. This enables you to advance the clock manually and test what your code does in response.
