@@ -159,7 +159,7 @@ body{font-size:16px;}
 &lt;/html&gt;
 </code></pre>
 <p>If we run that in a browser we should see this:</p>
-<p><img alt="No tests" src="file:///Users/carlwhittaker/Dropbox/blog on testing/no_tests.png" /></p>
+<p><img alt="No tests" src="no_tests.png" /></p>
 <h3>Writing a simple test</h3>
 <p>Lets start with something very basic. We're going to write something that will let us build up a list of values and render them to a page. We could start with a test like this:</p>
 <pre><code>module('listView');
@@ -181,7 +181,7 @@ test('The user is presented with a list of added items', function () {
 });
 </code></pre>
 <p>Here we're creating a fixture element and instantiating our new module. We're then exercising a public method called addOne with a string and asserting that each time we call render the expected string is inserted into our element. Lets run our test and see it fail:</p>
-<p><img alt="Failing test" src="file:///Users/carlwhittaker/Dropbox/blog on testing/fail.png" /></p>
+<p><img alt="Failing test" src="fail.png" /></p>
 <p>Now lets write some code to get this test to pass:</p>
 <pre><code>var listView = function (domEl) {
   var items = [];
@@ -195,7 +195,7 @@ test('The user is presented with a list of added items', function () {
   };
 };
 </code></pre>
-<p><img alt="Passing test" src="file:///Users/carlwhittaker/Dropbox/blog on testing/pass.png" /></p>
+<p><img alt="Passing test" src="pass.png" /></p>
 <p>There we go, our first test passes. Now onto more complicated matters.</p>
 <h3>Getting asyncronous</h3>
 <p>Now lets alter our listView module to load some data from the server. This presents us with two problems:</p>
@@ -260,7 +260,7 @@ test('The list is populated from the server', function () {
 };
 </code></pre>
 <p>Run the tests</p>
-<p><img alt="All tests passing" src="file:///Users/carlwhittaker/Dropbox/blog on testing/all_passed.png" /></p>
+<p><img alt="All tests passing" src="all_passed.png" /></p>
 <p>Perfect.</p>
 <h2>Burning through time</h2>
 <p>When testing JavaScript animation or other asyncronous functionality based on timeouts and intervals you don't want to have to wait for them to finish in your tests.</p>
