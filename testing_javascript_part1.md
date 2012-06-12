@@ -214,6 +214,10 @@ And now lets make the test pass:
       };
     };
 
+And now to run the tests
+
+![All tests passing](cube_tests.png)
+
 Hopefully this has served as a useful introduction to effective JavaScript testing in the browser.
 
 In the second part of this article I'll write about Sinon spies, mocks and stubs.
