@@ -2,19 +2,6 @@
 
 Writing tests for JavaScript is tough and often overlooked. I'm going to do my best to persuade you why you need them and more importantly how to make it easier to write them with an awesome library called [sinon.js](http://sinonjs.org/).
 
-## When to write them
-Writing JavaScript tests might seem like overkill when you already have a solid functional test suite. Perhaps you're writing nothing but glue code to pull a handful of off the shelf plugins together. In this case you might be able to get away without having JavaScript tests.
-
-Consider the following when deciding whether to write JavaScript tests for a piece of functionality:
-
-### Could this be used on more than one page or multiple times on a single page?
-To properly test your code in a functional suite you'd have to run all your tests on every instance instead of just verifying that it has been initialised where expected. This would slow down your build and introduce duplicate tests.
-
-### Is it non trivial?
-If there's a lot going on within your code then for the sake of peace of mind during refactoring you'll want to be able to rely on your tests to keep you on track.
-
-If you find yourself answering yes to either of the above it's probably a good idea to write some JavaScript tests.
-
 ## Getting started
 The are several mature testing frameworks out there and while I have my preferences it's up to you to make up your mind which meets your needs.
 
@@ -25,7 +12,7 @@ The are several mature testing frameworks out there and while I have my preferen
 ### Setting up
 First we'll need to create a page to run our tests. We'll include the libraries we plan to use to write our tests.
 
-In my examples I'm going to use QUnit simply because it's the framework I'm most familiar with and the tests are the easiest to read. Check out [using QUnit](http://docs.jquery.com/QUnit#Using_QUnit) for detailed setup instructions. You'll also need sinon, so head over to [sinonjs.com](http://sinonjs.com) and download it along with the QUnit adapter.
+In my examples I'm going to use QUnit simply because it's the framework I'm most familiar with and the tests are the easiest to read. Check out [using QUnit](http://docs.jquery.com/QUnit#Using_QUnit) for detailed setup instructions. You'll also need sinon, so head over to [sinonjs.com](http://sinonjs.org) and download it along with the QUnit adapter.
 
 Here's my test runner, I've chucked in jQuery too because it's a defacto standard and makes it much easier to test the DOM.
 
