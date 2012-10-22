@@ -1,6 +1,6 @@
 # Making JavaScript testing in the browser not suck with Sinon.js (Part 2)
 
-This is the continuation of my post on Sinon.js, the first part can be found [http://www.unboxedconsulting.com/blog/making-javascript-testing-in-the-browser-not-suck-with-sinon-js-part-1](http://www.unboxedconsulting.com/blog/making-javascript-testing-in-the-browser-not-suck-with-sinon-js-part-1).
+This is the continuation of my post on Sinon.js, the first part can be found here [http://www.unboxedconsulting.com/blog/making-javascript-testing-in-the-browser-not-suck-with-sinon-js-part-1](http://www.unboxedconsulting.com/blog/making-javascript-testing-in-the-browser-not-suck-with-sinon-js-part-1).
 
 I'm going to describe the basic usage of Sinon's mocks, spies, and stubs.
 
@@ -8,7 +8,7 @@ I'm going to describe the basic usage of Sinon's mocks, spies, and stubs.
 Assuming you've read the first part you should already have a test suite up and running with your framework of choice. So i'll just get right into it.
 
 ## Mocks
-Mocks replace APIs with fake methods. We can use mocks to make expectations. Expectations allow us to ensure that the methods on our API are called correctly.
+Mocks replace APIs with fake methods. We can use mocks to make expectations. Expectations allow us to ensure that methods on our API are called correctly.
 
 ### Benefits:
 * Tests run more quickly
@@ -36,7 +36,7 @@ Lets run the test and watch it fail.
 
 ![Failing test with a mock expectation](failing_mock.png)
 
-Now to write some code to make it pass.
+Now we'll write some code to make it pass.
 
     var TeaBreak = function (data) {
       this.data = data;
@@ -48,7 +48,7 @@ Now to write some code to make it pass.
       }
     };
 
-And run the test.
+And run the tests.
 
 ![Passing test with a mock](passing_mock.png)
 
@@ -73,7 +73,7 @@ Heres an example of a stub in action.
       Network.save.restore();
     });
 
-Here we're creating a stub for "save" on our Network API. We're telling it to return false when its called. We're then expecting an error message to be added to our instance of TeaBreak.
+Here we're creating a stub for "save" on our Network API. We're telling it to return "false" when it's called. We're then expecting an error message to be added to our instance.
 
 If we run our tests we should see one failure.
 
@@ -98,9 +98,9 @@ Then run our tests.
 
 ![Passing test with a stub](passing_stub.png)
 
-There we go.
+Done.
 
-The Sinon stub API gives us everything we need to simulate the behaviour of an external dependency. Sinon stubs are immensely flexible. We can instruct them to perform many complex actions; such as automatically triggering callbacks with predefined arguments while specifying the context in which they are called. The full stub API can be found here [http://sinonjs.org/docs/#stubs-api](http://sinonjs.org/docs/#stubs-api)
+The Sinon stub API gives us a comprehensive framework to simulate the behaviour of an external dependency. Sinon stubs are immensely flexible. We can instruct them to perform many complex actions; such as automatically triggering callbacks with predefined arguments. The full stub API can be found here [http://sinonjs.org/docs/#stubs-api](http://sinonjs.org/docs/#stubs-api)
 
 ## Spies
 Spies are great for testing the conditions around which a callback is called. They can be used to ensure that events are triggered as expected.
@@ -153,5 +153,4 @@ Run the tests
 
 Spot on.
 
-
-
+Hopefully this has served as a brief but useful introduction to the mocking features of Sinon. Happy testing.
