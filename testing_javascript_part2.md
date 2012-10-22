@@ -8,18 +8,18 @@ I'm going to discuss the potential of Sinon's mocks, spies, and stubs
 Assuming you've read the first part you should already have a test suite up and running with your framework of choice.
 
 ## Mocks
-Mocks replace APIs with fake methods. We can use mocks to specify "expectations". Expectations allow us to test how our code responds to return values from our mocked API.
+Mocks replace APIs with fake methods. We can use mocks to specify "expectations". Expectations allows us to ensure that the methods on our API are called correctly.
 
 ### Benefits:
 * Tests run more quickly
 * Bugs can be traced more easily
-* Tests are easier to understand
+* Tests are easier to read
 
 Heres an example test utilising a mock:
   
     module('TeaBreak');
 
-    test('it should save data', 1, function () {
+    test('enjoy should save data', 1, function () {
       var mock = sinon.mock(Network);
       
       mock.expects('save')
@@ -51,3 +51,36 @@ Now to write some code to make it pass.
 And run the test.
 
 ![Passing test with a mock](passing_mock.png)
+
+## Stubs
+Like mocks stubs can be used to replace methods on an API. We can use stubs to force our code down a particular path. This allows us to test how our code responds to errors and different return values in isolation.
+
+Heres an example of a stub in action.
+
+    test('enjoy should generate an error message when save fails', 2, function () {
+      sinon.stub(Network, 'save').returns(false);
+
+      var elevenses = new TeaBreak({cuppa: 'lovely'});
+      elevenses.enjoy();
+
+      equal(elevenses.errors.length, 1, 'One error should be generated');
+      equal(elevenses.errors[0], 'No break for you :(');
+
+      Network.save.restore();
+    });
+
+Here we're creating a stub for "save" on our Network API. We're telling it to return false when its called. We're then expecting an error message to be added to our instance of TeaBreak.
+
+If we run our tests we should see one failure.
+
+![Failing test with a stub](failing_stub.png)
+
+And if we write some code to make it pass.
+
+![Passing test with a stub](passing_stub.png)
+
+
+
+
+
+
