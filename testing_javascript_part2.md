@@ -77,10 +77,73 @@ If we run our tests we should see one failure.
 
 And if we write some code to make it pass.
 
+    var TeaBreak = function (data) {
+      this.errors = [];
+      this.data = data;
+    };
+
+    TeaBreak.prototype = {
+      enjoy: function () {
+        if (false === Network.save(this.data)) {
+          this.errors.push('No break for you :(');
+        }
+      }
+    };
+
+Then run our tests.
+
 ![Passing test with a stub](passing_stub.png)
 
+## Spies
+Spies are great for testing the conditions around which a callback is called. They can be used to ensure that events are triggered as expected.
 
+Heres an example of a spy in action
 
+    test('callback is triggered', function () {
+      var callback = sinon.spy();
+
+      var elevenses = new TeaBreak({cuppa: 'lovely'});
+      elevenses.on('enjoyed', callback);
+      elevenses.enjoy();
+
+      ok(callback.calledOnce);
+    });
+
+We're creating a spy and subscribing it to an event on our subject. We then exercise our subject and expect that the callback was called once.
+
+Lets watch the test fail.
+
+![Failing test with a spy](failing_spy.png)
+
+Now lets write some code to make it pass.
+
+    var TeaBreak = function (data) {
+      this.errors = [];
+      this.topics = {};
+      this.data = data;
+    };
+
+    TeaBreak.prototype = {
+      enjoy: function () {
+        if (false === Network.save(this.data)) {
+          this.errors.push('No break for you :(');
+        } else {
+          this.publish('enjoyed');
+        }
+      },
+      on: function(topic, fn) {
+        this.topics[topic] = fn;
+      },
+      publish: function(topic) {
+        if (this.topics[topic]) this.topics[topic]();
+      }
+    };
+
+Run the tests
+
+![Passing test with a spy](passing_spy.png)
+
+Spot on.
 
 
 
