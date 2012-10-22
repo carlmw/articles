@@ -2,13 +2,13 @@
 
 This is the continuation of my post on Sinon.js, the first part can be found [testing_javascript_part1](here).
 
-I'm going to discuss the potential of Sinon's mocks, spies, and stubs
+I'm going to describe the basic usage of Sinon's mocks, spies, and stubs.
 
 ## Getting started
-Assuming you've read the first part you should already have a test suite up and running with your framework of choice.
+Assuming you've read the first part you should already have a test suite up and running with your framework of choice. So i'll just get right into it.
 
 ## Mocks
-Mocks replace APIs with fake methods. We can use mocks to specify "expectations". Expectations allows us to ensure that the methods on our API are called correctly.
+Mocks replace APIs with fake methods. We can use mocks to make expectations. Expectations allow us to ensure that the methods on our API are called correctly.
 
 ### Benefits:
 * Tests run more quickly
@@ -21,8 +21,8 @@ Heres an example test utilising a mock:
 
     test('enjoy should save data', 1, function () {
       var mock = sinon.mock(Network);
-      
       mock.expects('save')
+        .once()
         .withArgs({cuppa: 'lovely'});
 
       new TeaBreak({cuppa: 'lovely'}).enjoy();
@@ -30,7 +30,7 @@ Heres an example test utilising a mock:
       mock.verify();
     });
 
-Here we're setting an expection. We're expecting the "save" method on the "Network" object to be called with the correct data.
+Here we're setting an expection. We're expecting the "save" method on the "Network" object to be called with the correct arguments.
 
 Lets run the test and watch it fail.
 
@@ -51,6 +51,10 @@ Now to write some code to make it pass.
 And run the test.
 
 ![Passing test with a mock](passing_mock.png)
+
+Perfect.
+
+The Sinon expectation API is chainable and features everything you need to specify the state in which a method should be called. More options can be found in the Sinon documentation here [http://sinonjs.org/docs/#expectations](http://sinonjs.org/docs/#expectations).
 
 ## Stubs
 Like mocks stubs can be used to replace methods on an API. We can use stubs to force our code down a particular path. This allows us to test how our code responds to errors and different return values in isolation.
@@ -93,6 +97,10 @@ And if we write some code to make it pass.
 Then run our tests.
 
 ![Passing test with a stub](passing_stub.png)
+
+There we go.
+
+The Sinon stub API gives us everything we need to simulate the behaviour of an external dependency. Sinon stubs are immensely flexible. We can instruct them to perform many complex actions; such as automatically triggering callbacks with predefined arguments while specifying the context in which they are called. The full stub API can be found here [http://sinonjs.org/docs/#stubs-api](http://sinonjs.org/docs/#stubs-api)
 
 ## Spies
 Spies are great for testing the conditions around which a callback is called. They can be used to ensure that events are triggered as expected.
