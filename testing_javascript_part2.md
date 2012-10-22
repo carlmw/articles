@@ -5,7 +5,7 @@ This is the continuation of my post on Sinon.js, the first part can be found her
 I'm going to describe the basic usage of Sinon's mocks, spies, and stubs.
 
 ## Getting started
-Assuming you've read the first part you should already have a test suite up and running with your framework of choice. So i'll just get right into it.
+I'm going to assume you're familiar with TDD and that you've read the first part you should already have a test suite up and running with your framework of choice. So i'll just get right into it.
 
 ## Mocks
 Mocks replace APIs with fake methods. We can use mocks to make expectations. Expectations allow us to ensure that methods on our API are called correctly.
@@ -30,11 +30,11 @@ Heres an example test utilising a mock:
       mock.verify();
     });
 
-Here we're setting an expection. We're expecting the "save" method on the "Network" object to be called with the correct arguments.
+Here we're setting an expectation. We're expecting the "save" method on the "Network" object to be called with the correct arguments.
 
 Lets run the test and watch it fail.
 
-![Failing test with a mock expectation](failing_mock.png)
+![Failing test with a mock expectation](http://carlmw.github.com/articles/failing_mock.png)
 
 Now we'll write some code to make it pass.
 
@@ -50,7 +50,7 @@ Now we'll write some code to make it pass.
 
 And run the tests.
 
-![Passing test with a mock](passing_mock.png)
+![Passing test with a mock](http://carlmw.github.com/articles/passing_mock.png)
 
 Perfect.
 
@@ -73,11 +73,11 @@ Heres an example of a stub in action.
       Network.save.restore();
     });
 
-Here we're creating a stub for "save" on our Network API. We're telling it to return "false" when it's called. We're then expecting an error message to be added to our instance.
+Here we're creating a stub for "save" on our Network API. We're telling it to return "false" when it's called. We're then asserting that an error message has been added to our instance.
 
 If we run our tests we should see one failure.
 
-![Failing test with a stub](failing_stub.png)
+![Failing test with a stub](http://carlmw.github.com/articles/failing_stub.png)
 
 And if we write some code to make it pass.
 
@@ -96,7 +96,7 @@ And if we write some code to make it pass.
 
 Then run our tests.
 
-![Passing test with a stub](passing_stub.png)
+![Passing test with a stub](http://carlmw.github.com/articles/passing_stub.png)
 
 Done.
 
@@ -117,11 +117,11 @@ Heres an example of a spy in action
       ok(callback.calledOnce);
     });
 
-We're creating a spy and subscribing it to an event on our subject. We then exercise our subject and expect that the callback was called once.
+We're creating a spy and subscribing it to an event on our subject. We then exercise our subject and assert that the callback was called once.
 
 Lets watch the test fail.
 
-![Failing test with a spy](failing_spy.png)
+![Failing test with a spy](http://carlmw.github.com/articles/failing_spy.png)
 
 Now lets write some code to make it pass.
 
@@ -149,8 +149,12 @@ Now lets write some code to make it pass.
 
 Run the tests
 
-![Passing test with a spy](passing_spy.png)
+![Passing test with a spy](http://carlmw.github.com/articles/passing_spy.png)
 
 Spot on.
 
-Hopefully this has served as a brief but useful introduction to the mocking features of Sinon. Happy testing.
+Spies are a great way of peeking into the inner workings of your code without replacing a method. A spy can wrap an existing method allowing you to make assertions around how it was called while still allowing it to function as normal. Documentation for the Stub API can be found here [http://sinonjs.org/docs/#spies-api](http://sinonjs.org/docs/#spies-api)
+
+Hopefully this has served as a brief but useful introduction to the mocking features of Sinon.
+
+Happy testing.
