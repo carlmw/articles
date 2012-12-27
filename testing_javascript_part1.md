@@ -36,7 +36,7 @@ Here's my test runner, I've chucked in jQuery too because it's a defacto standar
 
 If we run that in a browser we should see this:
 
-![No tests](no_tests.png)
+![No tests](testing_javascript_part1/no_tests.png)
 
 ### Writing a simple test
 Lets start with something very basic. We're going to write something that will let us build up a list of values and render them to a page. We could start with a test like this:
@@ -61,7 +61,7 @@ Lets start with something very basic. We're going to write something that will l
 
 Here we're creating a fixture element and instantiating our new module. We're then exercising a public method called addOne with a string and asserting that each time we call render the expected string is inserted into our element. Lets run our test and see it fail:
 
-![Failing test](fail.png)
+![Failing test](testing_javascript_part1/fail.png)
 
 Now lets write some code to get this test to pass:
 
@@ -77,7 +77,7 @@ Now lets write some code to get this test to pass:
       };
     };
 
-![Passing test](pass.png)
+![Passing test](testing_javascript_part1/pass.png)
 
 There we go, our first test passes. Now onto more complicated matters.
 
@@ -149,7 +149,7 @@ Lets update listView and get that test to pass:
 
 Run the tests
 
-![All tests passing](all_passed.png)
+![All tests passing](testing_javascript_part1/all_passed.png)
 
 Perfect.
 
@@ -216,7 +216,7 @@ And now lets make the test pass:
 
 And now to run the tests
 
-![All tests passing](cube_tests.png)
+![All tests passing](testing_javascript_part1/cube_tests.png)
 
 Hopefully this has served as a useful introduction to effective JavaScript testing in the browser.
 
